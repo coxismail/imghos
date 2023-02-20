@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #mwai-chat-63f2af22d291a {
+        --mwai-spacing: 15px;
+        --mwai-fontSize: 15px;
+        --mwai-borderRadius: 10px;
+        --mwai-fontColor: #ffffff;
+        --mwai-backgroundPrimaryColor: #454654;
+        --mwai-backgroundSecondaryColor: #343541;
+        --mwai-aiAvatarBackgroundColor: #10a37f;
+        --mwai-userAvatarBackgroundColor: #135ea4;
+        --mwai-headerButtonsColor: #343541;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-open-button {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        transition: all 0.2s ease-out;
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        align-items: end;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-open-button .mwai-icon-text {
+        background: var(--mwai-backgroundPrimaryColor);
+        color: var(--mwai-headerButtonsColor);
+        max-width: 200px;
+        font-size: 13px;
+        margin-bottom: 15px;
+        padding: 5px 10px;
+        border-radius: 8px;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-open-button:hover {
+        cursor: pointer;
+        filter: saturate(2.5) hue-rotate(5deg);
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-content {
+        background: var(--mwai-backgroundSecondaryColor);
+        color: var(--mwai-fontColor);
+        font-size: var(--mwai-fontSize);
+        border-radius: var(--mwai-borderRadius);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-conversation {
+        overflow: auto;
+      }
+
+      #mwai-chat-63f2af22d291a * {
+        box-sizing: border-box;
+      }
+
+      #mwai-chat-63f2af22d291a a {
+        color: #2196f3;
+      }
+
+      #mwai-chat-63f2af22d291a h1 {
+        font-size: 200%;
+      }
+
+      #mwai-chat-63f2af22d291a h2 {
+        font-size: 160%;
+      }
+
+      #mwai-chat-63f2af22d291a h3 {
+        font-size: 140%;
+      }
+
+      #mwai-chat-63f2af22d291a h4 {
+        font-size: 120%;
+      }
+
+      #mwai-chat-63f2af22d291a pre {
+        color: var(--mwai-fontColor);
+        border-radius: var(--mwai-borderRadius);
+        padding: calc(var(--mwai-spacing) * 2 / 3) var(--mwai-spacing);
+        break-after: auto;
+        font-size: 95%;
+        font-family: system-ui;
+        background: #343541;
+      }
+
+      #mwai-chat-63f2af22d291a pre code {
+        padding: 0 !important;
+        font-family: system-ui;
+        background: #343541;
+      }
+
+      #mwai-chat-63f2af22d291a ol {
+        padding: 0;
+        margin: 0 0 0 20px;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-reply {
+        display: flex;
+        padding: var(--mwai-spacing);
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-ai,
+      #mwai-chat-63f2af22d291a .mwai-system {
+        background: var(--mwai-backgroundPrimaryColor);
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-name {
+        color: var(--mwai-fontColor);
+        margin-right: 5px;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-name .mwai-name-text {
+        opacity: 0.5;
+        white-space: nowrap;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-name .mwai-avatar {
+        margin-right: 10px;
+        width: 40px;
+        height: 40px;
+        background: var(--mwai-aiAvatarBackgroundColor);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-name .mwai-avatar img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-name .mwai-avatar.mwai-svg img {
+        width: 28px;
+        height: 28px;
+        filter: brightness(0) invert(1);
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-user .mwai-name .mwai-avatar {
+        background: var(--mwai-userAvatarBackgroundColor);
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-text {
+        flex: auto;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-text > *:first-child {
+        margin-top: 0;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-text > *:last-child {
+        margin-bottom: 0;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-input {
+        display: flex;
+        padding: var(--mwai-spacing);
+        border-top: 1px solid var(--mwai-backgroundPrimaryColor);
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-input textarea {
+        background: var(--mwai-backgroundPrimaryColor);
+        color: var(--mwai-fontColor);
+        flex: auto;
+        padding: calc(var(--mwai-spacing) / 2) var(--mwai-spacing);
+        border: none;
+        border-radius: 5px;
+        font-size: var(--mwai-fontSize);
+        resize: none;
+        font-family: inherit;
+        line-height: calc(var(--mwai-spacing) * 2);
+        margin: 0;
+        overflow: hidden;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-input textarea:focus {
+        outline: none;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-input button {
+        background: none;
+        color: var(--mwai-fontColor);
+        background-color: var(--mwai-backgroundSecondaryColor);
+        border: 1px solid var(--mwai-backgroundPrimaryColor);
+        margin-left: var(--mwai-spacing);
+        width: 90px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.2s ease-out;
+        max-height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-input button .mwai-timer {
+        margin-left: 5px;
+        margin-right: 5px;
+        font-size: 11px;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-input button:hover {
+        background: var(--mwai-backgroundPrimaryColor);
+      }
+
+      #mwai-chat-63f2af22d291a button {
+        position: relative;
+      }
+
+      #mwai-chat-63f2af22d291a button[disabled] span {
+        display: none;
+      }
+
+      #mwai-chat-63f2af22d291a button[disabled]::before {
+        content: "";
+        width: 18px;
+        height: 18px;
+        margin: auto;
+        border: 3px solid transparent;
+        border-top-color: var(--mwai-fontColor);
+        border-radius: 50%;
+        animation: mwai-button-spinner 1s ease infinite;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window {
+        position: fixed;
+        right: 30px;
+        bottom: 30px;
+        width: 460px;
+        z-index: 9999;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window .mwai-header {
+        display: none;
+        justify-content: flex-end;
+        align-items: center;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window .mwai-header .mwai-resize-button {
+        justify-content: center;
+        height: 40px;
+        width: 25px;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window
+        .mwai-header
+        .mwai-resize-button:before {
+        transition: all 0.2s ease-out;
+        content: " ";
+        cursor: pointer;
+        position: absolute;
+        height: 15px;
+        width: 15px;
+        opacity: 0.75;
+        border: 2px solid var(--mwai-headerButtonsColor);
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window
+        .mwai-header
+        .mwai-resize-button:hover:before {
+        width: 20px;
+        height: 20px;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window .mwai-header .mwai-close-button {
+        justify-content: center;
+        height: 35px;
+        width: 35px;
+        cursor: pointer;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window
+        .mwai-header
+        .mwai-close-button:before,
+      #mwai-chat-63f2af22d291a.mwai-window
+        .mwai-header
+        .mwai-close-button:after {
+        content: " ";
+        cursor: pointer;
+        position: absolute;
+        height: 25px;
+        width: 2px;
+        background-color: var(--mwai-headerButtonsColor);
+        opacity: 0.75;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window
+        .mwai-header
+        .mwai-close-button:before {
+        transition: all 0.2s ease-out;
+        transform: translate(16px, 5px) rotate(45deg);
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window
+        .mwai-header
+        .mwai-close-button:after {
+        transition: all 0.2s ease-out;
+        transform: translate(16px, 5px) rotate(-45deg);
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window
+        .mwai-header
+        .mwai-close-button:hover:before {
+        opacity: 1;
+        transform: translate(16px, 5px) rotate(135deg);
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window
+        .mwai-header
+        .mwai-close-button:hover:after {
+        opacity: 1;
+        transform: translate(16px, 5px) rotate(45deg);
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window .mwai-content {
+        display: none;
+        opacity: 0;
+        max-height: 40vh;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-bottom-left {
+        bottom: 30px;
+        right: inherit;
+        left: 30px;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-bottom-left .mwai-open-button {
+        right: inherit;
+        left: 0;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-top-right {
+        top: 30px;
+        bottom: inherit;
+        right: 30px;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-top-right .mwai-open-button {
+        top: 0;
+        bottom: inherit;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-top-left {
+        top: 30px;
+        bottom: inherit;
+        right: inherit;
+        left: 30px;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-top-left .mwai-open-button {
+        top: 0;
+        bottom: inherit;
+        right: inherit;
+        left: 0;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-gallery {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 5px;
+      }
+
+      #mwai-chat-63f2af22d291a .mwai-gallery img {
+        width: 100%;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-fullscreen .mwai-close-button {
+        height: 40px;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-fullscreen
+        .mwai-close-button:before,
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-fullscreen
+        .mwai-close-button:after {
+        height: 30px;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-fullscreen
+        .mwai-resize-button:before {
+        width: 20px;
+        height: 20px;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-fullscreen
+        .mwai-resize-button:hover:before {
+        width: 15px;
+        height: 15px;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-fullscreen:not(.mwai-window),
+      #mwai-chat-63f2af22d291a.mwai-fullscreen.mwai-window.mwai-open {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        width: inherit;
+        height: inherit;
+        max-height: inherit;
+        max-width: inherit;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-fullscreen:not(.mwai-window) .mwai-content,
+      #mwai-chat-63f2af22d291a.mwai-fullscreen.mwai-window.mwai-open
+        .mwai-content {
+        height: 100%;
+        max-height: inherit;
+        border-radius: inherit;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-fullscreen:not(.mwai-window)
+        .mwai-content
+        .mwai-conversation,
+      #mwai-chat-63f2af22d291a.mwai-fullscreen.mwai-window.mwai-open
+        .mwai-content
+        .mwai-conversation {
+        flex: auto;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-open .mwai-header {
+        display: flex;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-open .mwai-content {
+        display: flex;
+        transition: opacity 200ms ease-in-out 0s;
+        opacity: 1;
+      }
+
+      #mwai-chat-63f2af22d291a.mwai-window.mwai-open .mwai-open-button {
+        display: none;
+      }
+
+      @media (max-width: 760px) {
+        #mwai-chat-63f2af22d291a.mwai-window {
+          left: 10px;
+          right: 10px;
+          bottom: 10px;
+          width: calc(100% - 20px);
+          z-index: 9999999999;
+        }
+        #mwai-chat-63f2af22d291a .mwai-reply {
+          flex-direction: column;
+        }
+        #mwai-chat-63f2af22d291a .mwai-input {
+          flex-direction: column;
+        }
+        #mwai-chat-63f2af22d291a .mwai-input button {
+          margin: 15px 0 0 0;
+          height: 40px;
+          width: inherit;
+        }
+        #mwai-chat-63f2af22d291a .mwai-name {
+          margin-right: 0;
+          max-width: inherit;
+        }
+      }
+
+      @keyframes mwai-button-spinner {
+        from {
+          transform: rotate(0turn);
+        }
+        to {
+          transform: rotate(1turn);
+        }
+      }
+
+      .admin-bar #mwai-chat-63f2af22d291a.mwai-fullscreen:not(.mwai-window),
+      .admin-bar
+        #mwai-chat-63f2af22d291a.mwai-fullscreen.mwai-window.mwai-open {
+        top: 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <section
+      class="elementor-section elementor-top-section elementor-element elementor-element-36c7855c elementor-section-boxed elementor-section-height-default elementor-section-height-default"
+      data-id="36c7855c"
+      data-element_type="section"
+      data-settings='{"background_background":"classic"}'
+    >
+      <div class="elementor-container elementor-column-gap-default">
+        <div
+          class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-5cb300f9"
+          data-id="5cb300f9"
+          data-element_type="column"
+        >
+          <div class="elementor-widget-wrap elementor-element-populated">
+            <div
+              class="elementor-element elementor-element-25fd85d8 elementor-widget elementor-widget-heading"
+              data-id="25fd85d8"
+              data-element_type="widget"
+              data-widget_type="heading.default"
+            >
+              <div class="elementor-widget-container">
+                <h2 class="elementor-heading-title elementor-size-default">
+                  Haz tus preguntas aquí..
+                </h2>
+              </div>
+            </div>
+            <div
+              class="elementor-element elementor-element-d99739b elementor-widget elementor-widget-shortcode"
+              data-id="d99739b"
+              data-element_type="widget"
+              data-widget_type="shortcode.default"
+            >
+              <div class="elementor-widget-container">
+                <div class="elementor-shortcode">
+                  <div
+                    id="mwai-chat-63f2af22d291a"
+                    class="mwai-chat mwai-chatgpt"
+                  >
+                    <div class="mwai-content">
+                      <div class="mwai-conversation"></div>
+                      <div class="mwai-input">
+                        <textarea
+                          rows="1"
+                          placeholder="Escribe tu mensaje..."
+                        ></textarea>
+                        <button><span>Enviar</span></button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <script>
+                    (function () {
+                      let mwai_63f2af22d291a_onGoingPrompt = [];
+                      let isMobile = window.matchMedia(
+                        "only screen and (max-width: 760px)"
+                      ).matches;
+                      let isWindow = false;
+                      let isDebugMode = true;
+                      let isFullscreen = false;
+                      let isCasuallyFineTuned = false;
+                      let mode = "chat";
+                      let maxSentences = 15;
+                      let memorizeChat = false;
+                      let mwai_63f2af22d291a_memorizedChat = [];
+
+                      if (isDebugMode) {
+                        window.mwai_63f2af22d291a = {
+                          onGoingPrompt: mwai_63f2af22d291a_onGoingPrompt,
+                          memorizedChat: mwai_63f2af22d291a_memorizedChat,
+                          parameters: {
+                            mode: mode,
+                            model: "text-davinci-003",
+                            temperature: "0.8",
+                            maxTokens: "2048",
+                            context: "answer any question ",
+                            start_sentence: "¡Hola! ¿Le puedo ayudar en algo?",
+                            isMobile: isMobile,
+                            isWindow: isWindow,
+                            isFullscreen: isFullscreen,
+                            isCasuallyFineTuned: isCasuallyFineTuned,
+                          },
+                        };
+                      }
+
+                      // Set button text
+                      function mwai_63f2af22d291a_setButtonText() {
+                        let input = document.querySelector(
+                          "#mwai-chat-63f2af22d291a .mwai-input textarea"
+                        );
+                        let button = document.querySelector(
+                          "#mwai-chat-63f2af22d291a .mwai-input button"
+                        );
+                        let buttonSpan = button.querySelector("span");
+                        if (mwai_63f2af22d291a_memorizedChat.length < 2) {
+                          buttonSpan.innerHTML = "Enviar";
+                        } else if (!input.value.length) {
+                          buttonSpan.innerHTML = "Clear";
+                        } else {
+                          buttonSpan.innerHTML = "Enviar";
+                        }
+                      }
+
+                      // Inject timer
+                      function mwai_63f2af22d291a_injectTimer(element) {
+                        let intervalId;
+                        let startTime = new Date();
+                        let timerElement = null;
+
+                        function updateTimer() {
+                          let now = new Date();
+                          let timer = Math.floor((now - startTime) / 1000);
+                          if (!timerElement) {
+                            if (timer > 0.5) {
+                              timerElement = document.createElement("div");
+                              timerElement.classList.add("mwai-timer");
+                              element.appendChild(timerElement);
+                            }
+                          }
+                          if (timerElement) {
+                            let minutes = Math.floor(timer / 60);
+                            let seconds = timer - minutes * 60;
+                            seconds = seconds < 10 ? "0" + seconds : seconds;
+                            let display = minutes + ":" + seconds;
+                            timerElement.innerHTML = display;
+                          }
+                        }
+
+                        intervalId = setInterval(updateTimer, 500);
+
+                        return function stopTimer() {
+                          clearInterval(intervalId);
+                          if (timerElement) {
+                            timerElement.remove();
+                          }
+                        };
+                      }
+
+                      // Push the reply in the conversation
+                      function mwai_63f2af22d291a_addReply(
+                        text,
+                        type = "user"
+                      ) {
+                        var conversation = document.querySelector(
+                          "#mwai-chat-63f2af22d291a .mwai-conversation"
+                        );
+
+                        if (memorizeChat) {
+                          mwai_63f2af22d291a_memorizedChat.push({ text, type });
+                          localStorage.setItem(
+                            "mwai-chat-63f2af22d291a",
+                            JSON.stringify(mwai_63f2af22d291a_memorizedChat)
+                          );
+                        }
+
+                        // If text is array, then it's image URLs. Let's create a simple gallery in HTML in $text.
+                        if (Array.isArray(text)) {
+                          var newText = '<div class="mwai-gallery">';
+                          for (var i = 0; i < text.length; i++) {
+                            newText +=
+                              '<a href="' +
+                              text[i] +
+                              '" target="_blank"><img decoding="async" src="' +
+                              text[i] +
+                              '" />';
+                          }
+                          text = newText + "</div>";
+                        }
+
+                        var mwaiClasses = "mwai-reply";
+                        if (type === "ai") {
+                          mwaiClasses += " mwai-ai";
+                        } else if (type === "system") {
+                          mwaiClasses += " mwai-system";
+                        } else {
+                          mwaiClasses += " mwai-user";
+                        }
+                        var html = '<div class="' + mwaiClasses + '">';
+                        if (type === "ai") {
+                          html +=
+                            '<span class="mwai-name"><div class="mwai-name-text">AI UlefoneMexico</div></span>';
+                        } else if (type === "system") {
+                          html += '<span class="mwai-name">System:</span>';
+                        } else {
+                          html +=
+                            '<span class="mwai-name"><div class="mwai-name-text">User:</div></span>';
+                        }
+                        html += '<span class="mwai-text">' + text + "</span>";
+                        html += "</div>";
+                        conversation.innerHTML += html;
+                        conversation.scrollTop = conversation.scrollHeight;
+                        mwai_63f2af22d291a_setButtonText();
+
+                        // Syntax coloring
+                        if (typeof hljs !== "undefined") {
+                          document
+                            .querySelectorAll("pre code")
+                            .forEach((el) => {
+                              hljs.highlightElement(el);
+                            });
+                        }
+                      }
+
+                      function mwai_63f2af22d291a_onUpdateOnGoingPrompt(
+                        onGoingPrompt,
+                        last = 15
+                      ) {
+                        let onGoingPromptLength = onGoingPrompt.length;
+                        let start =
+                          onGoingPromptLength - last < 0
+                            ? 0
+                            : onGoingPromptLength - last;
+                        if (isCasuallyFineTuned) {
+                          onGoingPromptLength--;
+                        }
+                        let conversationToUse = onGoingPrompt.slice(
+                          start,
+                          onGoingPromptLength
+                        );
+
+                        // Casually fine tuned, let's use the last question
+                        if (isCasuallyFineTuned) {
+                          let lastLine =
+                            conversationToUse[conversationToUse.length - 1];
+                          let prompt = lastLine.says + "";
+                          return prompt;
+                        }
+
+                        // Otherwise let's compile the latest conversation
+                        conversationToUse = conversationToUse.map(
+                          (x) => x.who + x.says
+                        );
+                        let prompt = conversationToUse.join("\n");
+                        if (isCasuallyFineTuned) {
+                          prompt = "";
+                        }
+                        return prompt;
+                      }
+
+                      // Function to request the completion
+                      function mwai_63f2af22d291a_onSendClick() {
+                        let input = document.querySelector(
+                          "#mwai-chat-63f2af22d291a .mwai-input textarea"
+                        );
+                        let inputText = input.value.trim();
+
+                        // Reset the conversation if empty
+                        if (inputText === "") {
+                          mwai_63f2af22d291a_onGoingPrompt = [];
+                          document.querySelector(
+                            "#mwai-chat-63f2af22d291a .mwai-conversation"
+                          ).innerHTML = "";
+                          localStorage.removeItem("mwai-chat-63f2af22d291a");
+                          mwai_63f2af22d291a_memorizedChat = [];
+                          mwai_63f2af22d291a_addReply(
+                            "¡Hola! ¿Le puedo ayudar en algo?",
+                            "ai"
+                          );
+                          return;
+                        }
+
+                        // Disable the button
+                        var button = document.querySelector(
+                          "#mwai-chat-63f2af22d291a .mwai-input button"
+                        );
+                        button.disabled = true;
+
+                        // Add the user reply
+                        mwai_63f2af22d291a_addReply(inputText, "user");
+                        mwai_63f2af22d291a_onGoingPrompt.push({
+                          who: "User: ",
+                          says: inputText,
+                        });
+                        input.value = "";
+                        input.setAttribute("rows", 1);
+                        input.disabled = true;
+
+                        // Let's build the prompt depending on the "system"
+                        mwai_63f2af22d291a_onGoingPrompt.push({
+                          who: "AI: ",
+                          says: "",
+                        });
+                        let prompt = "answer any question " + "\n\n";
+                        prompt += mwai_63f2af22d291a_onUpdateOnGoingPrompt(
+                          mwai_63f2af22d291a_onGoingPrompt,
+                          maxSentences
+                        );
+
+                        console.log(
+                          "onGoingPrompt",
+                          mwai_63f2af22d291a_onGoingPrompt
+                        );
+                        console.log("prompt", prompt);
+
+                        // Prompt for the images
+                        const data =
+                          mode === "images"
+                            ? {
+                                env: "chatbot",
+                                session: "N/A",
+                                prompt: inputText,
+                                rawInput: inputText,
+                                maxResults: 1,
+                                model: "text-davinci-003",
+                                apiKey: "",
+                                // Prompt for the chat
+                              }
+                            : {
+                                env: "chatbot",
+                                session: "N/A",
+                                prompt: prompt,
+                                rawInput: inputText,
+                                userName:
+                                  '<div class="mwai-name-text">User:</div>',
+                                aiName:
+                                  '<div class="mwai-name-text">AI Studybuddie</div>',
+                                model: "text-davinci-003",
+                                temperature: "0.8",
+                                maxTokens: "2048",
+                                stop: "",
+                                maxResults: 1,
+                                apiKey: "",
+                              };
+
+                        // Start the timer
+                        const stopTimer =
+                          mwai_63f2af22d291a_injectTimer(button);
+
+                        // Send the request
+                        if (isDebugMode) {
+                          console.log("[BOT] Sent: ", data);
+                        }
+                        fetch(
+                          "https://mystudybuddie.com/wp-json/ai-chatbot/v1/chat",
+                          {
+                            method: "POST",
+                            headers: {
+                              "Content-Type": "application/json",
+                              "X-WP-Nonce": "4d129a14cd",
+                            },
+                            body: JSON.stringify(data),
+                          }
+                        )
+                          .then((response) => response.json())
+                          .then((data) => {
+                            if (isDebugMode) {
+                              console.log("[BOT] Recv: ", data);
+                            }
+                            if (!data.success) {
+                              mwai_63f2af22d291a_addReply(
+                                data.message,
+                                "system"
+                              );
+                            } else {
+                              mwai_63f2af22d291a_addReply(
+                                data.images ? data.images : data.html,
+                                "ai"
+                              );
+                              mwai_63f2af22d291a_onGoingPrompt[
+                                mwai_63f2af22d291a_onGoingPrompt.length - 1
+                              ].says = data.answer;
+                            }
+                            button.disabled = false;
+                            input.disabled = false;
+                            stopTimer();
+
+                            // Only focus only on desktop (to avoid the mobile keyboard to kick-in)
+                            if (!isMobile) {
+                              input.focus();
+                            }
+                          })
+                          .catch((error) => {
+                            console.error(error);
+                            button.disabled = false;
+                            input.disabled = false;
+                            stopTimer();
+                          });
+                      }
+
+                      // Keep the textarea height in sync with the content
+                      function mwai_63f2af22d291a_textAreaResize(ev) {
+                        ev.target.style.height = "auto";
+                        ev.target.style.height = ev.target.scrollHeight + "px";
+                      }
+
+                      // Keep the textarea height in sync with the content
+                      function mwai_63f2af22d291a_textAreaDelayedResize(ev) {
+                        window.setTimeout(
+                          mwai_63f2af22d291a_textAreaResize,
+                          0,
+                          event
+                        );
+                      }
+
+                      // Init the chatbot
+                      function mwai_63f2af22d291a_initChatBot() {
+                        var input = document.querySelector(
+                          "#mwai-chat-63f2af22d291a .mwai-input textarea"
+                        );
+                        var button = document.querySelector(
+                          "#mwai-chat-63f2af22d291a .mwai-input button"
+                        );
+
+                        input.addEventListener("keypress", (event) => {
+                          let text = event.target.value;
+                          if (
+                            event.keyCode === 13 &&
+                            !text.length &&
+                            !event.shiftKey
+                          ) {
+                            event.preventDefault();
+                            return;
+                          }
+                          if (
+                            event.keyCode === 13 &&
+                            text.length &&
+                            !event.shiftKey
+                          ) {
+                            mwai_63f2af22d291a_onSendClick();
+                          }
+                        });
+                        input.addEventListener("keydown", (event) => {
+                          var rows = input.getAttribute("rows");
+                          if (event.keyCode === 13 && event.shiftKey) {
+                            var lines = input.value.split("\n").length + 1;
+                            //mwaiSetTextAreaHeight(input, lines);
+                          }
+                        });
+                        input.addEventListener("keyup", (event) => {
+                          var rows = input.getAttribute("rows");
+                          var lines = input.value.split("\n").length;
+                          //mwaiSetTextAreaHeight(input, lines);
+                          mwai_63f2af22d291a_setButtonText();
+                        });
+
+                        input.addEventListener(
+                          "change",
+                          mwai_63f2af22d291a_textAreaResize,
+                          false
+                        );
+                        input.addEventListener(
+                          "cut",
+                          mwai_63f2af22d291a_textAreaDelayedResize,
+                          false
+                        );
+                        input.addEventListener(
+                          "paste",
+                          mwai_63f2af22d291a_textAreaDelayedResize,
+                          false
+                        );
+                        input.addEventListener(
+                          "drop",
+                          mwai_63f2af22d291a_textAreaDelayedResize,
+                          false
+                        );
+                        input.addEventListener(
+                          "keydown",
+                          mwai_63f2af22d291a_textAreaDelayedResize,
+                          false
+                        );
+
+                        button.addEventListener("click", (event) => {
+                          mwai_63f2af22d291a_onSendClick();
+                        });
+
+                        // If window, add event listener to mwai-open-button and mwai-close-button
+                        if (isWindow) {
+                          var openButton = document.querySelector(
+                            "#mwai-chat-63f2af22d291a .mwai-open-button"
+                          );
+                          openButton.addEventListener("click", (event) => {
+                            var chat = document.querySelector(
+                              "#mwai-chat-63f2af22d291a"
+                            );
+                            chat.classList.add("mwai-open");
+                            // Only focus only on desktop (to avoid the mobile keyboard to kick-in)
+                            if (!isMobile) {
+                              input.focus();
+                            }
+                          });
+                          var closeButton = document.querySelector(
+                            "#mwai-chat-63f2af22d291a .mwai-close-button"
+                          );
+                          closeButton.addEventListener("click", (event) => {
+                            var chat = document.querySelector(
+                              "#mwai-chat-63f2af22d291a"
+                            );
+                            chat.classList.remove("mwai-open");
+                          });
+                          if (isFullscreen) {
+                            var resizeButton = document.querySelector(
+                              "#mwai-chat-63f2af22d291a .mwai-resize-button"
+                            );
+                            resizeButton.addEventListener("click", (event) => {
+                              var chat = document.querySelector(
+                                "#mwai-chat-63f2af22d291a"
+                              );
+                              chat.classList.toggle("mwai-fullscreen");
+                            });
+                          }
+                        }
+
+                        // Get back the previous chat if any for the same ID
+                        var chatHistory = [];
+                        if (memorizeChat) {
+                          chatHistory = localStorage.getItem(
+                            "mwai-chat-63f2af22d291a"
+                          );
+                          if (chatHistory) {
+                            chatHistory = JSON.parse(chatHistory);
+                            chatHistory = chatHistory.filter(
+                              (x) => x && x.text && x.type
+                            );
+                            chatHistory.forEach((x) => {
+                              mwai_63f2af22d291a_addReply(x.text, x.type);
+                            });
+                          } else {
+                            chatHistory = [];
+                          }
+                        }
+                        if (chatHistory.length === 0) {
+                          mwai_63f2af22d291a_addReply(
+                            "¡Hola! ¿Le puedo ayudar en algo?",
+                            "ai"
+                          );
+                        }
+                      }
+
+                      // Let's go totally meoooow on this!
+                      mwai_63f2af22d291a_initChatBot();
+                    })();
+                  </script>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
